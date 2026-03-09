@@ -1,0 +1,23 @@
+import { test } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { ProductsPage } from '../pages/ProductsPage';
+import { CartPage } from '../pages/CartPage';
+
+test('user can remove a product from cart', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  const productsPage = new ProductsPage(page);
+  const cartPage = new CartPage(page);
+
+  await loginPage.goto();
+  await loginPage.login('standard_user', 'secret_sauce');
+  await productsPage.assertProductsPageLoaded();
+
+  await productsPage.addProductToCart('Sauce Labs Backpack');
+  await productsPage.openCart();
+
+  await cartPage.assertCartPageLoaded();
+  await cartPage.assertProductInCart('Sauce Labs Backpack');
+
+  await cartPage.removeProductFromCart('Sauce Labs Backpack');
+  await cartPage.assertProductNotInCart('Sauce Labs Backpack');
+});

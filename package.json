@@ -1,0 +1,20 @@
+{
+  "name": "playwright-typescript-saucedemo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  }
+}
